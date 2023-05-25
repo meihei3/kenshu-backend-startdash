@@ -1,0 +1,20 @@
+{
+    "name": "y-ema/backend-startdash",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "meihei3 - yohei.ema",
+            "email": "24579635+meihei3@users.noreply.github.com"
+        }
+    ],
+    "require": {},
+    "config": {
+        "platform": {
+            "php": "8.0"
+        }
+    }
+}
