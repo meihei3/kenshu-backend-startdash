@@ -5,7 +5,7 @@ namespace App;
 
 class App
 {
-    public function run()
+    public function run(): void
     {
         $handler = Route::getHandler($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
 
