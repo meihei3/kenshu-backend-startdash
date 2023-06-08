@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Handler;
 
+use App\Http\Response;
+use App\Http\ResponseFactory;
+use App\Http\ServerRequest;
 use App\Model\Post;
 use App\Service\PostService;
 
@@ -11,17 +14,16 @@ class GetPostListHandler implements HandlerInterface
 {
     /**
      * array なのは良くないけど
-     * @param array $req Request
-     * @return array Response
+     * @param ServerRequest $req Request
+     * @return Response Response
      */
-    public function run(array $req): array
+    public function run(ServerRequest $req): Response
     {
-        $result = self::render(PostService::getPostList());
+        $body = self::render(PostService::getPostList());
 
-        return [
-            "status_code" => 200,
-            "body" => "<html>{$result}</html>"
-        ];
+        return ResponseFactory::buildSuccess()
+            ->withHeader('Content-Type', 'text/html; charset=utf-8')
+            ->withBody($body);
     }
 
     /**

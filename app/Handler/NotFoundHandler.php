@@ -2,6 +2,10 @@
 
 namespace App\Handler;
 
+use App\Http\Response;
+use App\Http\ResponseFactory;
+use App\Http\ServerRequest;
+
 class NotFoundHandler implements HandlerInterface
 {
 
@@ -9,11 +13,12 @@ class NotFoundHandler implements HandlerInterface
     {
     }
 
-    public function run(array $req): array
+    public function run(ServerRequest $req): Response
     {
-        return [
-            "status_code" => 404,
-            "body" => "<html>Not Found.</html>"
-        ];
+        $body = '<html>Not Found.</html>';
+
+        return ResponseFactory::buildNotFound()
+            ->withHeader('Content-Type', 'text/html; charset=utf-8')
+            ->withBody($body);
     }
 }
