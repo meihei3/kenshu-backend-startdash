@@ -13,7 +13,7 @@ class App
         $handler = Route::getHandler($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
         $req = ServerRequestFactory::build();
 
-        $res = $handler->run($req);
+        $res = $handler->handle($req);
 
         $this->emit($res);
     }

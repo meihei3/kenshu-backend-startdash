@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace App\Handler;
@@ -10,14 +9,14 @@ use App\Http\ServerRequest;
 use App\Model\Post;
 use App\Service\PostService;
 
-class GetPostListHandler implements HandlerInterface
+class GetPostListRequestHandler implements RequestHandlerInterface
 {
     /**
      * array なのは良くないけど
      * @param ServerRequest $req Request
      * @return Response Response
      */
-    public function run(ServerRequest $req): Response
+    public function handle(ServerRequest $req): Response
     {
         $body = self::render(PostService::getPostList());
 
