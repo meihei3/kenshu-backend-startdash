@@ -14,15 +14,31 @@ class PostRepository
     {
         return [
             new Post(
+                id: 1,
                 title: 'Hello World',
                 content: 'This is my first post',
                 author: 'John Doe',
             ),
             new Post(
+                id: 2,
                 title: 'Hello World 2',
                 content: 'This is my second post',
                 author: 'John Doe',
             ),
         ];
+    }
+
+    /**
+     * @param int $id
+     * @return Post
+     */
+    public static function getById(int $id): Post
+    {
+        return new Post(
+            id: 2,
+            title: 'Hello World 2',
+            content: 'This is my second post',
+            author: 'John Doe',
+        );
     }
 }
