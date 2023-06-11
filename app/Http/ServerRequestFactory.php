@@ -10,13 +10,14 @@ class ServerRequestFactory
         $path = preg_replace("/\?.*\z/u", "", $_SERVER['REQUEST_URI']);
 
         return new ServerRequest(
-            $_SERVER['REQUEST_METHOD'],
-            $path,
-            $_GET,
-            $_POST,
-            $_COOKIE,
-            $_FILES,
-            $_SERVER,
+            method: $_SERVER['REQUEST_METHOD'],
+            path: $path,
+            get: $_GET,
+            post: $_POST,
+            cookies: $_COOKIE,
+            session: $_SESSION,
+            files: $_FILES,
+            server: $_SERVER,
         );
     }
 }
