@@ -15,7 +15,6 @@ class ServerRequestFactory
             get: $_GET,
             post: $_POST,
             cookies: $_COOKIE,
-            session: $_SESSION ?? [],
             files: $_FILES,
             server: $_SERVER,
         );

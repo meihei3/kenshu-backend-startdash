@@ -11,7 +11,6 @@ readonly class ServerRequest
         public array $get = [],
         public array $post = [],
         public array $cookies = [],
-        public array $session = [],
         public array $files = [],
         public array $server = [],
     ) {

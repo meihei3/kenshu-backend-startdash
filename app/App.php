@@ -11,7 +11,6 @@ class App
     public function run(): void
     {
         ob_start();
-        session_start();
 
         $req = ServerRequestFactory::build();
         $handler = Route::resolve($req->method, $req->path);
