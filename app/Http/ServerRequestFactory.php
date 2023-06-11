@@ -7,9 +7,11 @@ class ServerRequestFactory
 {
     public static function build(): ServerRequest
     {
+        $path = preg_replace("/\?.*\z/u", "", $_SERVER['REQUEST_URI']);
+
         return new ServerRequest(
             $_SERVER['REQUEST_METHOD'],
-            $_SERVER['REQUEST_URI'],
+            $path,
             $_GET,
             $_POST,
             $_COOKIE,
