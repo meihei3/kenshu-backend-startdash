@@ -11,7 +11,7 @@ class AuthUserService
 {
     public static function getLoggedInUser(): User
     {
-        $userId = Session::getInstance()->get('user_id');
+        $userId = (int)Session::getInstance()->get('user_id');
 
         return UserRepository::getById($userId);
     }

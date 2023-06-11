@@ -44,4 +44,9 @@ class PostRepository
             authorId: 2,
         );
     }
+
+    public static function update(Post $post)
+    {
+        return;
+    }
 }

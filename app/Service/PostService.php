@@ -19,4 +19,17 @@ class PostService
         // 記事のデータを返す
         return PostRepository::getById($id);
     }
+
+    public static function updatePost(string $title, string $content, Post $prev)
+    {
+        $post = new Post(
+            id: $prev->id,
+            title: $title,
+            content: $content,
+            author: $prev->author,
+            authorId: $prev->authorId,
+        );
+
+        PostRepository::update($post);
+    }
 }

@@ -15,7 +15,7 @@ class ResponseFactory
         return new Response(404);
     }
 
-    public static function buildRedirectResponse(int $status = 300, string $uri = '/'): Response
+    public static function buildRedirectResponse(int $status = 302, string $uri = '/'): Response
     {
         return new Response($status, ['Location' => $uri]);
     }

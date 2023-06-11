@@ -10,6 +10,7 @@ use App\Handler\GetPostListRequestHandler;
 use App\Handler\GetPostRequestHandler;
 use App\Handler\NotFoundRequestHandler;
 use App\Handler\PostLoginRequestHandler;
+use App\Handler\PostPostRequestHandler;
 use App\Handler\RequestHandlerInterface;
 
 class Route
@@ -21,6 +22,11 @@ class Route
 
         } elseif ($method === 'GET' && preg_match('#^/posts/([0-9]+)$#', $path, $matches)) {
             return new GetPostRequestHandler([
+                'post_id' => (int)$matches[1],
+            ]);
+
+        } elseif ($method === 'POST' && preg_match('#^/posts/([0-9]+)$#', $path, $matches)) {
+            return new PostPostRequestHandler([
                 'post_id' => (int)$matches[1],
             ]);
 

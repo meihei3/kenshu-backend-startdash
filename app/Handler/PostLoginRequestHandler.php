@@ -16,9 +16,9 @@ class PostLoginRequestHandler implements RequestHandlerInterface
             return ResponseFactory::buildForbiddenResponse();
         }
         if (!AuthUserService::tryLogin($req->post['username'] ?? '', $req->post['password'] ?? '')) {
-            return ResponseFactory::buildRedirectResponse(302, '/login');
+            return ResponseFactory::buildRedirectResponse(uri: '/login');
         }
 
-        return ResponseFactory::buildRedirectResponse(302);
+        return ResponseFactory::buildRedirectResponse();
     }
 }
