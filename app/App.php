@@ -10,8 +10,8 @@ class App
 {
     public function run(): void
     {
-        $handler = Route::getHandler($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
         $req = ServerRequestFactory::build();
+        $handler = Route::resolve($req->method, $req->path);
 
         $res = $handler->handle($req);
 
