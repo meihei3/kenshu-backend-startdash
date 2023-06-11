@@ -7,8 +7,9 @@ namespace App;
 use App\Handler\GetLoginRequestHandler;
 use App\Handler\GetPostListRequestHandler;
 use App\Handler\GetPostRequestHandler;
-use App\Handler\RequestHandlerInterface;
 use App\Handler\NotFoundRequestHandler;
+use App\Handler\PostLoginRequestHandler;
+use App\Handler\RequestHandlerInterface;
 
 class Route
 {
@@ -24,8 +25,10 @@ class Route
 
         } elseif ($method === 'GET' && $path === "/login") {
             return new GetLoginRequestHandler();
-        }
 
+        } elseif ($method === 'POST' && $path === "/login") {
+            return new PostLoginRequestHandler();
+        }
 
         return new NotFoundRequestHandler();
     }

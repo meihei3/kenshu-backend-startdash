@@ -1,0 +1,21 @@
+<?php
+declare(strict_types=1);
+
+namespace App\Handler;
+
+use App\Http\Response;
+use App\Http\ResponseFactory;
+use App\Http\ServerRequest;
+use App\Service\AuthUserService;
+
+class PostLoginRequestHandler implements RequestHandlerInterface
+{
+    public function handle(ServerRequest $req): Response
+    {
+        if (AuthUserService::tryLogin($req->post['username'] ?? '', $req->post['password'] ?? '')) {
+            return ResponseFactory::buildRedirectResponse(302, '/login');
+        }
+
+        return ResponseFactory::buildRedirectResponse(302);
+    }
+}
