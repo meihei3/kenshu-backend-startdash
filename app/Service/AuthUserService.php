@@ -34,4 +34,16 @@ class AuthUserService
 
         return true;
     }
+
+    public static function verifyCsrfToken(string $param): bool
+    {
+        $session = Session::getInstance();
+        $token = $session->get('csrf_token');
+
+        if (is_null($token)) {
+            return false;
+        }
+
+        return hash_equals($token, $param);
+    }
 }

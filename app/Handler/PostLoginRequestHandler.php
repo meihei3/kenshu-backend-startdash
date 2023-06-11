@@ -12,7 +12,10 @@ class PostLoginRequestHandler implements RequestHandlerInterface
 {
     public function handle(ServerRequest $req): Response
     {
-        if (AuthUserService::tryLogin($req->post['username'] ?? '', $req->post['password'] ?? '')) {
+        if (!AuthUserService::verifyCsrfToken($req->post['csrf_token'] ?? '')) {
+            return ResponseFactory::buildForbiddenResponse();
+        }
+        if (!AuthUserService::tryLogin($req->post['username'] ?? '', $req->post['password'] ?? '')) {
             return ResponseFactory::buildRedirectResponse(302, '/login');
         }
 
