@@ -14,4 +14,14 @@ class ResponseFactory
     {
         return new Response(404);
     }
+
+    public static function buildRedirectResponse(int $status = 300, string $uri = '/'): Response
+    {
+        return new Response($status, ['Location' => $uri]);
+    }
+
+    public static function buildForbiddenResponse(): Response
+    {
+        return new Response(403);
+    }
 }

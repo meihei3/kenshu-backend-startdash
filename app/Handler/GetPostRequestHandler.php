@@ -12,7 +12,7 @@ use JetBrains\PhpStorm\ArrayShape;
 class GetPostRequestHandler implements RequestHandlerInterface
 {
     public function __construct(
-        #[ArrayShape(['user_id' => 'int'])]
+        #[ArrayShape(['post_id' => 'int'])]
         private readonly array $pathParams = []
     )
     {
@@ -20,7 +20,7 @@ class GetPostRequestHandler implements RequestHandlerInterface
 
     public function handle(ServerRequest $req): Response
     {
-        $id = $this->pathParams['user_id'];
+        $id = $this->pathParams['post_id'];
         $post = PostService::getPost($id);
 
         $body = self::render($post);

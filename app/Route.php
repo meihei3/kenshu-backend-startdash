@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App;
 
 use App\Handler\GetLoginRequestHandler;
+use App\Handler\GetPostEditRequestHandler;
 use App\Handler\GetPostListRequestHandler;
 use App\Handler\GetPostRequestHandler;
 use App\Handler\NotFoundRequestHandler;
@@ -20,7 +21,12 @@ class Route
 
         } elseif ($method === 'GET' && preg_match('#^/posts/([0-9]+)$#', $path, $matches)) {
             return new GetPostRequestHandler([
-                'user_id' => (int)$matches[1],
+                'post_id' => (int)$matches[1],
+            ]);
+
+        } elseif ($method === 'GET' && preg_match('#^/posts/([0-9]+)/edit$#', $path, $matches)) {
+            return new GetPostEditRequestHandler([
+                'post_id' => (int)$matches[1],
             ]);
 
         } elseif ($method === 'GET' && $path === "/login") {

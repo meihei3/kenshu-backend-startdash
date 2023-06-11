@@ -18,12 +18,14 @@ class PostRepository
                 title: 'Hello World',
                 content: 'This is my first post',
                 author: 'John Doe',
+                authorId: 2,
             ),
             new Post(
                 id: 2,
                 title: 'Hello World 2',
                 content: 'This is my second post',
                 author: 'John Doe',
+                authorId: 2,
             ),
         ];
     }
@@ -39,6 +41,7 @@ class PostRepository
             title: 'Hello World 2',
             content: 'This is my second post',
             author: 'John Doe',
+            authorId: 2,
         );
     }
 }
