@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App;
 
+use App\Handler\GetLoginRequestHandler;
 use App\Handler\GetPostListRequestHandler;
 use App\Handler\GetPostRequestHandler;
 use App\Handler\RequestHandlerInterface;
@@ -21,7 +22,10 @@ class Route
                 'user_id' => (int)$matches[1],
             ]);
 
+        } elseif ($method === 'GET' && $path === "/login") {
+            return new GetLoginRequestHandler();
         }
+
 
         return new NotFoundRequestHandler();
     }

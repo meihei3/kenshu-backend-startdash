@@ -10,6 +10,9 @@ class App
 {
     public function run(): void
     {
+        ob_start();
+        session_start();
+
         $req = ServerRequestFactory::build();
         $handler = Route::resolve($req->method, $req->path);
 
@@ -20,6 +23,8 @@ class App
 
     public function emit(Response $response): void
     {
+        ob_end_clean();
+
         http_response_code($response->status);
         foreach ($response->headers as $key => $value) {
             header("{$key}: {$value}");
