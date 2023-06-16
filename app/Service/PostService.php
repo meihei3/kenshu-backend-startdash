@@ -20,7 +20,7 @@ class PostService
         return PostRepository::getById($id);
     }
 
-    public static function updatePost(string $title, string $content, Post $prev)
+    public static function updatePost(string $title, string $content, Post $prev): void
     {
         $post = new Post(
             id: $prev->id,

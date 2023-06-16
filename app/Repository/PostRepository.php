@@ -45,7 +45,7 @@ class PostRepository
         );
     }
 
-    public static function update(Post $post)
+    public static function update(Post $post): void
     {
         return;
     }
