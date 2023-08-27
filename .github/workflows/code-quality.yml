@@ -1,0 +1,32 @@
+name: PHP-CS-Fixer Review
+
+on:
+  pull_request:
+
+jobs:
+  php-cs-fixer-review:
+    name: Check PHP Code with PHP-CS-Fixer
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.2
+          tools: php-cs-fixer
+
+      - name: Setup reviewdog
+        uses: reviewdog/action-setup@v1
+        with:
+          reviewdog_version: latest
+
+      - name: PHP-CS-Fixer dry-run
+        run: |
+          php-cs-fixer fix --dry-run --diff --format=checkstyle > php-cs-fixer-result.xml
+
+      - name: Run reviewdog
+        run: |
+          reviewdog -f=checkstyle -name="PHP-CS-Fixer" -reporter=github-pr-review -fail-on-error=true -level=info < php-cs-fixer-result.xml
