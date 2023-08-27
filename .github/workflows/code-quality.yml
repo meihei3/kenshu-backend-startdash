@@ -23,11 +23,9 @@ jobs:
         with:
           reviewdog_version: latest
 
-      - name: PHP-CS-Fixer dry-run
+      - name: PHP CS Fixer with Reviewdog
         run: |
-          php-cs-fixer fix --dry-run --diff --format=checkstyle > php-cs-fixer-result.xml
-
-      - name: Run reviewdog
-        if : failure()
-        run: |
-          reviewdog -f=checkstyle -name="PHP-CS-Fixer" -reporter=github-pr-review -fail-on-error=true -level=info < php-cs-fixer-result.xml
+          php-cs-fixer fix --dry-run --using-cache=no --diff | sed 's#$GITHUB_WORKSPACE/##'
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+　
