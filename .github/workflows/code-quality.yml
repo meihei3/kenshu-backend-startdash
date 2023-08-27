@@ -28,5 +28,6 @@ jobs:
           php-cs-fixer fix --dry-run --diff --format=checkstyle > php-cs-fixer-result.xml
 
       - name: Run reviewdog
+        if : failure()
         run: |
           reviewdog -f=checkstyle -name="PHP-CS-Fixer" -reporter=github-pr-review -fail-on-error=true -level=info < php-cs-fixer-result.xml
