@@ -10,13 +10,13 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: 8.2
-          tools: php-cs-fixer
+          tools: php-cs-fixer, cs2pr
 
       - name: Setup reviewdog
         uses: reviewdog/action-setup@v1
@@ -25,7 +25,6 @@ jobs:
 
       - name: PHP CS Fixer with Reviewdog
         run: |
-          php-cs-fixer fix --dry-run --using-cache=no --diff | sed 's#$GITHUB_WORKSPACE/##'
+          php-cs-fixer fix --dry-run --using-cache=no --format=checkstyle | cs2pr
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-　
